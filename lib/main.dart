@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+// 1. Import the native splash package
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-// 1. Make the 'main' function asynchronous
 void main() async {
-  // 2. Ensure Flutter is ready before calling native code
-  WidgetsFlutterBinding.ensureInitialized();
+  // 1. Preserve the splash screen
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // 3. Initialize Firebase
-  await Firebase.initializeApp(
-    // 4. Use the options from our generated file
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // 2. Initialize Firebase (from Module 1)
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  // 5. Run the app (this line is already here)
+  // 3. Run the app (from Module 1)
   runApp(const MyApp());
+
+  // 4. Remove the splash screen after app is ready
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
