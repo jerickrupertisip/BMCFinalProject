@@ -3,8 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 // 1. Import the native splash package
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'screens/login_screen.dart';
-
+import 'screens/auth_wrapper.dart'; // 1. Import AuthWrapper
 
 void main() async {
   // 1. Preserve the splash screen
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'eCommerce App',
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       // 3. A simple placeholder for our home screen
-      home: const LoginScreen(),
+      home: const AuthWrapper(),
     );
   }
 }
